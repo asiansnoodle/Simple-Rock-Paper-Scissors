@@ -21,3 +21,17 @@ function getComputerChoice(){
     }
 
 }
+
+function getHumanChoice(){
+    // create logic to get the user input
+    // 1) prompt user to input their choice
+    // 2) return the input in lowercase
+    
+    // step 1:
+    let input = prompt("Choose: Rock, Paper, or Scissors");
+
+    // step 2:
+    return input.toLowerCase();
+    
+}
+
