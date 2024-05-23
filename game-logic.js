@@ -38,8 +38,8 @@ function getHumanChoice(){
 let humanScore = 0;
 let computerScore = 0;
 
-let computerSelection = getComputerChoice();
-let humanSelection = getHumanChoice();
+let computerSelection;
+let humanSelection;
 
 function playRound(computerSelection, humanSelection){
     // create logic to compute the wonner between computer and human selection
@@ -90,9 +90,25 @@ function playRound(computerSelection, humanSelection){
 
 }
 
-// for (i=0; i<10; i++){
-//     playRound(computerSelection, humanSelection);
-//     computerSelection = getComputerChoice();
-//     humanSelection = getHumanChoice();
-// }
-// console.log(`RESULTS: ${humanScore} | ${computerScore}`);
+function playGame(){
+
+    for (i=0; i<5; i++){
+        computerSelection = getComputerChoice();
+        humanSelection = getHumanChoice();
+        playRound(computerSelection, humanSelection);
+    }
+    console.log(`RESULTS: ${humanScore} | ${computerScore}`);
+
+    if (humanScore > computerScore){
+        console.log("YOU WIN!");
+    }
+    else if (computerScore > humanScore){
+        console.log("YOU LOSE!");
+    }
+    else {
+        console.log("MATCH TIED!");
+    }
+
+}
+
+playGame();
