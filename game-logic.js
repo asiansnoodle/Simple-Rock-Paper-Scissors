@@ -32,6 +32,67 @@ function getHumanChoice(){
 
     // step 2:
     return input.toLowerCase();
-    
+
 }
 
+let humanScore = 0;
+let computerScore = 0;
+
+let computerSelection = getComputerChoice();
+let humanSelection = getHumanChoice();
+
+function playRound(computerSelection, humanSelection){
+    // create logic to compute the wonner between computer and human selection
+    // 1) create an if-else branch comparing the 2 choices and return proper message 
+    // cases: rock-rock, rock-paper, rock-scissors | paper-paper, paper-rock, paper-scissors | scissors-scissors, scissors-rock, scissors-paper
+    const R = "rock";
+    const P = "paper";
+    const S = "scissors";
+
+    console.log(`You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`);
+
+    // step 1:
+    if (humanSelection === R && computerSelection === R){
+        console.log("TIE! Rock matches Rock");
+    }
+    else if (humanSelection === R && computerSelection === P){
+        console.log("You LOSE! Rock loses to Paper");
+        computerScore++;
+    }
+    else if (humanSelection === R && computerSelection === S){
+        console.log("You WIN! Rock beats Scissors");
+        humanScore++;
+    }
+
+    if (humanSelection === P && computerSelection === P){
+        console.log("TIE! Paper matches Paper");
+    }
+    else if (humanSelection === P && computerSelection === R){
+        console.log("You WIN! Paper beats Rock");
+        humanScore++;
+    }
+    else if (humanSelection === P && computerSelection === S){
+        console.log("You LOSE! Paper loses to scissors");
+        computerScore++;
+    }
+
+    if (humanSelection === S && computerSelection === S){
+        console.log("TIE! Scissors match Scissors");
+    }
+    else if (humanSelection === S && computerSelection === R){
+        console.log("You LOSE! Scissors lose to Rock");
+        computerScore++;
+    }
+    else if (humanSelection === S && computerSelection === P){
+        console.log("You WIN! Scissors beat Paper");
+        humanScore++;
+    }
+
+}
+
+// for (i=0; i<10; i++){
+//     playRound(computerSelection, humanSelection);
+//     computerSelection = getComputerChoice();
+//     humanSelection = getHumanChoice();
+// }
+// console.log(`RESULTS: ${humanScore} | ${computerScore}`);
