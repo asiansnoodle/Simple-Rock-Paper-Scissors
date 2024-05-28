@@ -41,7 +41,7 @@ let computerScore = 0;
 let computerSelection;
 let humanSelection;
 
-function playRound(computerSelection, humanSelection){
+function playRound(computerSelection, humanSelection, resultDisplayer){
     // create logic to compute the wonner between computer and human selection
     // 1) create an if-else branch comparing the 2 choices and return proper message 
     // cases: rock-rock, rock-paper, rock-scissors | paper-paper, paper-rock, paper-scissors | scissors-scissors, scissors-rock, scissors-paper
@@ -53,51 +53,61 @@ function playRound(computerSelection, humanSelection){
 
     // step 1:
     if (humanSelection === R && computerSelection === R){
-        console.log("TIE! Rock matches Rock");
+        // console.log("TIE! Rock matches Rock");
+        resultDisplayer.textContent = "TIE! Rock matches Rock";
     }
     else if (humanSelection === R && computerSelection === P){
-        console.log("You LOSE! Rock loses to Paper");
+        // console.log("You LOSE! Rock loses to Paper");
+        resultDisplayer.textContent = "You LOSE! Rock loses to Paper"
         computerScore++;
     }
     else if (humanSelection === R && computerSelection === S){
-        console.log("You WIN! Rock beats Scissors");
+        // console.log("You WIN! Rock beats Scissors");
+        resultDisplayer.textContent = "You WIN! Rock beats Scissors"
         humanScore++;
     }
 
     if (humanSelection === P && computerSelection === P){
-        console.log("TIE! Paper matches Paper");
+        // console.log("TIE! Paper matches Paper");
+        resultDisplayer.textContent = "TIE! Paper matches Paper";
     }
     else if (humanSelection === P && computerSelection === R){
-        console.log("You WIN! Paper beats Rock");
+        // console.log("You WIN! Paper beats Rock");
+        resultDisplayer.textContent = "You WIN! Paper beats Rock";
         humanScore++;
     }
     else if (humanSelection === P && computerSelection === S){
-        console.log("You LOSE! Paper loses to scissors");
+        // console.log("You LOSE! Paper loses to scissors");
+        resultDisplayer.textContent = "You LOSE! Paper loses to scissors";
         computerScore++;
     }
 
     if (humanSelection === S && computerSelection === S){
-        console.log("TIE! Scissors match Scissors");
+        // console.log("TIE! Scissors match Scissors");
+        resultDisplayer.textContent = "TIE! Scissors match Scissors";
     }
     else if (humanSelection === S && computerSelection === R){
-        console.log("You LOSE! Scissors lose to Rock");
+        // console.log("You LOSE! Scissors lose to Rock");
+        resultDisplayer.textContent = "You LOSE! Scissors lose to Rock";
         computerScore++;
     }
     else if (humanSelection === S && computerSelection === P){
-        console.log("You WIN! Scissors beat Paper");
+        // console.log("You WIN! Scissors beat Paper");
+        resultDisplayer.textContent = "You WIN! Scissors beat Paper";
         humanScore++;
     }
 
 }
 
-function playGame(btnSelected){
+function playGame(btnSelected, resultDisplayer, scoreboard){
 
     computerSelection = getComputerChoice();
     // humanSelection = getHumanChoice();
     humanSelection = btnSelected;
-    playRound(computerSelection, humanSelection);
+    playRound(computerSelection, humanSelection, resultDisplayer);
     
-    console.log(`SCORE: ${humanScore} | ${computerScore}`);
+    // console.log(`SCORE: ${humanScore} | ${computerScore}`);
+    scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore}`;
 
     // if (humanScore > computerScore){
     //     console.log("YOU WIN!");
@@ -118,17 +128,20 @@ const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
 
+const resultDisplayer = document.querySelector("#round-result");
+const scoreboard = document.querySelector("#scoreboard");
+
 // Button to select rock:
 rockBtn.addEventListener("click", () => {
-   playGame("rock");
+   playGame("rock", resultDisplayer, scoreboard);
 });
 
 // Button to select paper:
 paperBtn.addEventListener("click", () => {
-    playGame("paper");
+    playGame("paper", resultDisplayer, scoreboard);
 });
 
 // Button to select scissors:
 scissorsBtn.addEventListener("click", () => {
-    playGame("scissors");
+    playGame("scissors", resultDisplayer, scoreboard);
 });
