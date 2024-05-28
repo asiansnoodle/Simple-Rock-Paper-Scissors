@@ -41,7 +41,7 @@ let computerScore = 0;
 let computerSelection;
 let humanSelection;
 
-function playRound(computerSelection, humanSelection, resultDisplayer){
+function playRound(computerSelection, humanSelection, resultDisplayer, matchupDisplay){
     // create logic to compute the wonner between computer and human selection
     // 1) create an if-else branch comparing the 2 choices and return proper message 
     // cases: rock-rock, rock-paper, rock-scissors | paper-paper, paper-rock, paper-scissors | scissors-scissors, scissors-rock, scissors-paper
@@ -49,7 +49,8 @@ function playRound(computerSelection, humanSelection, resultDisplayer){
     const P = "paper";
     const S = "scissors";
 
-    console.log(`You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`);
+    // console.log(`You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`);
+    matchupDisplay.textContent = `You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`;
 
     // step 1:
     if (humanSelection === R && computerSelection === R){
@@ -99,15 +100,26 @@ function playRound(computerSelection, humanSelection, resultDisplayer){
 
 }
 
-function playGame(btnSelected, resultDisplayer, scoreboard){
+function playGame(btnSelected, resultDisplayer, scoreboard, matchupDisplay){
 
     computerSelection = getComputerChoice();
     // humanSelection = getHumanChoice();
     humanSelection = btnSelected;
-    playRound(computerSelection, humanSelection, resultDisplayer);
+    playRound(computerSelection, humanSelection, resultDisplayer, matchupDisplay);
     
     // console.log(`SCORE: ${humanScore} | ${computerScore}`);
     scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore}`;
+
+    if (humanScore == 5 || computerScore == 5){
+        if (humanScore > computerScore){
+            scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore} - YOU WIN`;
+        }
+        else {
+            scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore} - YOU LOSE`;
+        }
+        humanScore = 0;
+        computerScore = 0;
+    }
 
     // if (humanScore > computerScore){
     //     console.log("YOU WIN!");
@@ -130,18 +142,19 @@ const scissorsBtn = document.querySelector("#scissors-btn");
 
 const resultDisplayer = document.querySelector("#round-result");
 const scoreboard = document.querySelector("#scoreboard");
+const matchupDisplay = document.querySelector("#matchup");
 
 // Button to select rock:
 rockBtn.addEventListener("click", () => {
-   playGame("rock", resultDisplayer, scoreboard);
+   playGame("rock", resultDisplayer, scoreboard, matchupDisplay);
 });
 
 // Button to select paper:
 paperBtn.addEventListener("click", () => {
-    playGame("paper", resultDisplayer, scoreboard);
+    playGame("paper", resultDisplayer, scoreboard, matchupDisplay);
 });
 
 // Button to select scissors:
 scissorsBtn.addEventListener("click", () => {
-    playGame("scissors", resultDisplayer, scoreboard);
+    playGame("scissors", resultDisplayer, scoreboard, matchupDisplay);
 });
