@@ -90,25 +90,45 @@ function playRound(computerSelection, humanSelection){
 
 }
 
-function playGame(){
+function playGame(btnSelected){
 
-    for (i=0; i<5; i++){
-        computerSelection = getComputerChoice();
-        humanSelection = getHumanChoice();
-        playRound(computerSelection, humanSelection);
-    }
-    console.log(`RESULTS: ${humanScore} | ${computerScore}`);
+    computerSelection = getComputerChoice();
+    // humanSelection = getHumanChoice();
+    humanSelection = btnSelected;
+    playRound(computerSelection, humanSelection);
+    
+    console.log(`SCORE: ${humanScore} | ${computerScore}`);
 
-    if (humanScore > computerScore){
-        console.log("YOU WIN!");
-    }
-    else if (computerScore > humanScore){
-        console.log("YOU LOSE!");
-    }
-    else {
-        console.log("MATCH TIED!");
-    }
+    // if (humanScore > computerScore){
+    //     console.log("YOU WIN!");
+    // }
+    // else if (computerScore > humanScore){
+    //     console.log("YOU LOSE!");
+    // }
+    // else {
+    //     console.log("MATCH TIED!");
+    // }
 
 }
 
-playGame();
+// Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step):
+
+// 3 variables to hold the 3 new buttons:
+const rockBtn = document.querySelector("#rock-btn");
+const paperBtn = document.querySelector("#paper-btn");
+const scissorsBtn = document.querySelector("#scissors-btn");
+
+// Button to select rock:
+rockBtn.addEventListener("click", () => {
+   playGame("rock");
+});
+
+// Button to select paper:
+paperBtn.addEventListener("click", () => {
+    playGame("paper");
+});
+
+// Button to select scissors:
+scissorsBtn.addEventListener("click", () => {
+    playGame("scissors");
+});
