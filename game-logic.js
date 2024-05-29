@@ -50,7 +50,7 @@ function playRound(computerSelection, humanSelection, resultDisplayer, matchupDi
     const S = "scissors";
 
     // console.log(`You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`);
-    matchupDisplay.textContent = `You: ${humanSelection.toUpperCase()}\nvs.\nComputer: ${computerSelection.toUpperCase()}`;
+    matchupDisplay.textContent = `${humanSelection.toUpperCase()}\nvs.\n${computerSelection.toUpperCase()}`;
 
     // step 1:
     if (humanSelection === R && computerSelection === R){
@@ -108,14 +108,15 @@ function playGame(btnSelected, resultDisplayer, scoreboard, matchupDisplay){
     playRound(computerSelection, humanSelection, resultDisplayer, matchupDisplay);
     
     // console.log(`SCORE: ${humanScore} | ${computerScore}`);
-    scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore}`;
+    scoreboard.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 
     if (humanScore == 5 || computerScore == 5){
+        resultDisplayer.textContent = "GAME OVER";
         if (humanScore > computerScore){
-            scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore} - YOU WIN`;
+            scoreboard.textContent = `Player: ${humanScore} Computer: ${computerScore} - YOU WIN`;
         }
         else {
-            scoreboard.textContent = `SCORE: ${humanScore} | ${computerScore} - YOU LOSE`;
+            scoreboard.textContent = `Player: ${humanScore} Computer: ${computerScore} - YOU LOSE`;
         }
         humanScore = 0;
         computerScore = 0;
